@@ -34,11 +34,8 @@ public class CharacterController : MonoBehaviour
             */
             
             //Trigger enemy's die-function
-            other.GetComponent<EnemyController>().DieProcess();
-            MessageManager.Instance.SendMessage(new Message(NamMessageType.OnEnemyKilled));
+            other.GetComponent<EnemyController>().OnDeath();
             
-            //Thông báo cho DataManager là vừa va vào enemy
-
         }
         else if (other.transform.CompareTag("Bullet"))
         {

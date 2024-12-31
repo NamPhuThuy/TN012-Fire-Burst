@@ -21,12 +21,6 @@ public class GamePlayManager : Singleton<GamePlayManager>
             _enemyList.Add(a);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void RemoveEnemyFromList(GameObject a)
     {
         // if (!_enemyList.Contains(a))
