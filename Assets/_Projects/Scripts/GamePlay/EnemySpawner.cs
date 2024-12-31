@@ -23,7 +23,7 @@ public class EnemySpawner : MonoBehaviour
 
 
             // Get the player's position
-            Vector3 playerPosition = GameObject.FindWithTag("Player").transform.position;
+            Vector3 playerPosition = GamePlayManager.Instance.player.transform.position;
 
             // Generate a random point around the player within the spawn radius
             Vector3 spawnPosition = playerPosition + Random.insideUnitSphere * maxDistance;

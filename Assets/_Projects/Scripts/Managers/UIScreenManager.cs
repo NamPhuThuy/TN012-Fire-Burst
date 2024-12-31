@@ -1,19 +1,34 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using NamPhuThuy;
 using UnityEngine;
 
-public class UIScreenManager : Singleton<UIScreenManager>
+public class UIScreenManager : Singleton<UIScreenManager>, IMessageHandle
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
-        
+        MessageManager.Instance.AddSubcriber(NamMessageType.OnDataChanged, this);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
-        
+        MessageManager.Instance.RemoveSubcriber(NamMessageType.OnDataChanged, this);
+    }
+
+    public UIScreenHUD UIScreenHUD;
+    void Start()
+    {
+        UIScreenHUD.Show();
+    }
+
+    public void Handle(Message message)
+    {
+        switch (message.type)
+        {
+            case NamMessageType.OnDataChanged:
+                UIScreenHUD.UpdateUI();
+                break;
+        }
     }
 }

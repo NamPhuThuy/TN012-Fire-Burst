@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using NamPhuThuy;
 using UnityEngine;
 
 public class CharacterController : MonoBehaviour
@@ -30,10 +31,13 @@ public class CharacterController : MonoBehaviour
         if (other.transform.CompareTag("Enemy"))
         {
             /*AudioManager.Instance.Play(_collideEnemyAudio);
-            MessageManager.Instance.SendMessage(new Message(NamMessageType.OnHitEnemy));*/
+            */
             
             //Trigger enemy's die-function
             other.GetComponent<EnemyController>().DieProcess();
+            MessageManager.Instance.SendMessage(new Message(NamMessageType.OnEnemyKilled));
+            
+            //Thông báo cho DataManager là vừa va vào enemy
 
         }
         else if (other.transform.CompareTag("Bullet"))
