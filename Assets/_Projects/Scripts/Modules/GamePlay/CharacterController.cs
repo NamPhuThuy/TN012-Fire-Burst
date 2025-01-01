@@ -37,11 +37,12 @@ public class CharacterController : MonoBehaviour
             other.GetComponent<EnemyController>().OnDeath();
             
         }
-        else if (other.transform.CompareTag("Bullet"))
+        else if (other.transform.CompareTag("Projectile"))
         {
             // AudioManager.Instance.Play(_collideBulletAudio);
+            
+            MessageManager.Instance.SendMessage(new Message(NamMessageType.OnGameOver));
             Destroy(gameObject);
-            // MessageManager.Instance.SendMessage(new Message(NamMessageType.OnGameOver));
         }
         
     }

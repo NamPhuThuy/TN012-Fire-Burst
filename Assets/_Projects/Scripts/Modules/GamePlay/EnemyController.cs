@@ -88,10 +88,4 @@ public class EnemyController : MonoBehaviour
         MessageManager.Instance.SendMessage(new Message(NamMessageType.OnEnemyKilled));
         Destroy(gameObject);
     }
-    
-
-    private void OnDestroy()
-    {
-        
-    }
 }

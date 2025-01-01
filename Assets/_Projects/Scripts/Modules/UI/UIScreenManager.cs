@@ -6,17 +6,22 @@ using UnityEngine;
 
 public class UIScreenManager : Singleton<UIScreenManager>, IMessageHandle
 {
+    public UIScreenHUD UIScreenHUD;
+    public UIScreenGameOver UIScreenGameOver;
+    
     private void OnEnable()
     {
         MessageManager.Instance.AddSubcriber(NamMessageType.OnDataChanged, this);
+        MessageManager.Instance.AddSubcriber(NamMessageType.OnGameOver, this);
     }
 
     private void OnDisable()
     {
         MessageManager.Instance.RemoveSubcriber(NamMessageType.OnDataChanged, this);
+        MessageManager.Instance.RemoveSubcriber(NamMessageType.OnGameOver, this);
     }
 
-    public UIScreenHUD UIScreenHUD;
+    
     void Start()
     {
         UIScreenHUD.Show();
@@ -28,6 +33,9 @@ public class UIScreenManager : Singleton<UIScreenManager>, IMessageHandle
         {
             case NamMessageType.OnDataChanged:
                 UIScreenHUD.UpdateUI();
+                break;
+            case NamMessageType.OnGameOver:
+                UIScreenGameOver.Show(false);
                 break;
         }
     }
