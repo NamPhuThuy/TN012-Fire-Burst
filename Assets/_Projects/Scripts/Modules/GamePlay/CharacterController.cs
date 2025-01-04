@@ -30,8 +30,7 @@ public class CharacterController : MonoBehaviour
         
         if (other.transform.CompareTag("Enemy"))
         {
-            /*AudioManager.Instance.Play(_collideEnemyAudio);
-            */
+            MessageManager.Instance.SendMessage(new Message(NamMessageType.OnHitEnemy));
             
             //Trigger enemy's die-function
             other.GetComponent<EnemyController>().OnDeath();

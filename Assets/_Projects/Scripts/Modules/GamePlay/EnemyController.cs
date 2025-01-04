@@ -3,12 +3,14 @@ using System.Collections;
 using System.Threading.Tasks;
 using NamPhuThuy;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class EnemyController : MonoBehaviour
 {
     [SerializeField] private GameObject _projectile;
     [SerializeField] private Transform _transform;
+    [SerializeField] private Collider2D _collider2D;
 
     [Header("Stats")] 
     [SerializeField] private float _speed = 2f;
@@ -19,12 +21,14 @@ public class EnemyController : MonoBehaviour
     private void Start()
     {
         _transform = GetComponent<Transform>();
+        _collider2D = GetComponent<Collider2D>();
         _spreadAngle = 360f / _projectileNums;
     }
 
     private void OnEnable()
     {
         GamePlayManager.Instance.AddEnemyToList(gameObject);
+        
     }
 
     private void OnDisable()
@@ -34,6 +38,8 @@ public class EnemyController : MonoBehaviour
     
     public async void OnDeath()
     {
+        //exclude player's layer from collision
+        _collider2D.excludeLayers = LayerMaskHelper.OnlyIncluding(LayerMask.NameToLayer("Player"));
         await DraggedAway();
         await FireProjectiles();
         await Die();
@@ -85,7 +91,10 @@ public class EnemyController : MonoBehaviour
 
     private async Task Die()
     {
-        MessageManager.Instance.SendMessage(new Message(NamMessageType.OnEnemyKilled));
+        MessageManager.Instance.SendMessage(new Message(NamMessageType.OnEnemyDie));
+        //cập nhật data
+        //cập nhật lại UI 
+        //phát đoạn nhạc
         Destroy(gameObject);
     }
 }

@@ -7,12 +7,16 @@ namespace NamPhuThuy
 {
     public enum NamMessageType
     {
+        OnGameStart,
+        
         /// <summary>
         /// When the game is over
         /// </summary>
         OnGameOver,
-        
-        OnEnemyKilled,
+        OnButtonClick,
+        OnHitEnemy,
+        OnEnemyDie,
+        OnCollectCoin,
         OnDataChanged
     }
     public class Message

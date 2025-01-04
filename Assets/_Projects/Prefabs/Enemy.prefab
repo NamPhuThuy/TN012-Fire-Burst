@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 571439716938379748}
   - component: {fileID: 2636446736348445120}
   - component: {fileID: 696296375319568275}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -99,6 +99,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _projectile: {fileID: 2502115708849141268, guid: faa8f6a801c5adc41812176cf756b8c8, type: 3}
+  _transform: {fileID: 0}
+  _rigidbody2D: {fileID: 0}
+  _speed: 2
+  _projectileNums: 12
+  _spreadAngle: 0
+  _projectileSpeed: 4.8
 --- !u!61 &696296375319568275
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -13,12 +13,12 @@ public class DataManager : Singleton<DataManager>, IMessageHandle
 
     private void OnEnable()
     {
-        MessageManager.Instance.AddSubcriber(NamMessageType.OnEnemyKilled, this);
+        MessageManager.Instance.AddSubcriber(NamMessageType.OnEnemyDie, this);
     }
 
     private void OnDisable()
     {
-        MessageManager.Instance.RemoveSubcriber(NamMessageType.OnEnemyKilled, this);
+        MessageManager.Instance.RemoveSubcriber(NamMessageType.OnEnemyDie, this);
     }
 
     public void LoadData()
@@ -41,7 +41,7 @@ public class DataManager : Singleton<DataManager>, IMessageHandle
     {
         switch (message.type)
         {
-            case NamMessageType.OnEnemyKilled:
+            case NamMessageType.OnEnemyDie:
                 gameData.score++;
                 MessageManager.Instance.SendMessage(new Message(NamMessageType.OnDataChanged));
                 break;

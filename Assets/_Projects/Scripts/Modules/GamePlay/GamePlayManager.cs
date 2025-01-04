@@ -15,6 +15,11 @@ public class GamePlayManager : Singleton<GamePlayManager>
         player = GameObject.FindWithTag("Player");
     }
 
+    private void OnEnable()
+    {
+        AudioManager.Instance.PlayMusic(AudioManager.Instance._musicGamePlay, true);
+    }
+
     public void AddEnemyToList(GameObject a)
     {
         if (!_enemyList.Contains(a))
