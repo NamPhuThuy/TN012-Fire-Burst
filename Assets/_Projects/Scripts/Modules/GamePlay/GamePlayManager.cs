@@ -8,7 +8,10 @@ using UnityEngine.Serialization;
 public class GamePlayManager : Singleton<GamePlayManager>
 {
     public GameObject player;
+    
+    [Header("Level Design")]
     [SerializeField] private List<GameObject> _enemyList;
+    [SerializeField] private EnemySpawner _enemySpawner;
 
     private void Start()
     {
@@ -18,6 +21,16 @@ public class GamePlayManager : Singleton<GamePlayManager>
     private void OnEnable()
     {
         AudioManager.Instance.PlayMusic(AudioManager.Instance._musicGamePlay, true);
+    }
+    
+    private void OnDisable()
+    {
+        //Stop all music 
+    }
+
+    private void StartNewWave()
+    {
+        
     }
 
     public void AddEnemyToList(GameObject a)

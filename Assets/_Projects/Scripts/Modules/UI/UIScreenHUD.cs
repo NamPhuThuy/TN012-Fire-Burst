@@ -8,7 +8,7 @@ public class UIScreenHUD : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _scoreText;
     public void Show()
     {
-        _scoreText.text = DataManager.Instance.gameData.score.ToString();
+        _scoreText.text = DataManager.Instance.playerData.score.ToString();
     }
     
     void Start()
@@ -24,6 +24,6 @@ public class UIScreenHUD : MonoBehaviour
 
     public void UpdateUI()
     {
-        _scoreText.text = DataManager.Instance.gameData.score.ToString();
+        _scoreText.text = DataManager.Instance.playerData.score.ToString();
     }
 }

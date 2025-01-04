@@ -33,7 +33,7 @@ public class CharacterController : MonoBehaviour
             MessageManager.Instance.SendMessage(new Message(NamMessageType.OnHitEnemy));
             
             //Trigger enemy's die-function
-            other.GetComponent<EnemyController>().OnDeath();
+            other.GetComponent<EnemyBase>().OnDeath();
             
         }
         else if (other.transform.CompareTag("Projectile"))

@@ -148,12 +148,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 188478118}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.18029301, y: -0.110942304, z: -0.01163176}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -621.5782, y: -378.8311, z: 0.99210423}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1841168604}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &188478120
 MonoBehaviour:
@@ -421,9 +421,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33978eca682dc604981bb1d40541b227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData:
+  playerData:
     score: 0
     coin: 0
+    currentWave: 0
+  levelDesignData: {fileID: 0}
 --- !u!1 &706158019
 GameObject:
   m_ObjectHideFlags: 0
@@ -1471,6 +1473,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   _enemyList: []
+  _enemySpawner: {fileID: 188478120}
 --- !u!4 &1841168604
 Transform:
   m_ObjectHideFlags: 0
@@ -1483,7 +1486,8 @@ Transform:
   m_LocalPosition: {x: 621.3979, y: 378.72015, z: -1.003736}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 188478119}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2028151868
@@ -1963,7 +1967,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 1166757485}
   - {fileID: 1269321162}
-  - {fileID: 188478119}
   - {fileID: 2137460944}
   - {fileID: 2059330607}
   - {fileID: 1337246756}

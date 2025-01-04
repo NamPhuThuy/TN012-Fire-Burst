@@ -19,7 +19,7 @@ public class UIScreenGameOver : MonoBehaviour
     public void Show(bool isWin)
     {
         gameObject.SetActive(true);
-        _scoreText.text = DataManager.Instance.gameData.score.ToString();
+        _scoreText.text = DataManager.Instance.playerData.score.ToString();
         _timeResultText.text = $"Time: {TimeHelper.ConvertSecondsToTimeFormat((int) Time.time)}";
         
         if (isWin)

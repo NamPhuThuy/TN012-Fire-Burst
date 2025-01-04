@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class GameData
+public class PlayerData
 {
     public int score = 0;
     public int coin = 0;
+    public int currentWave = 0;
 }

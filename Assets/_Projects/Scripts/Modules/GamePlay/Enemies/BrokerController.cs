@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
-public class EnemyController : MonoBehaviour
+public class BrokerController : EnemyBase
 {
     [SerializeField] private GameObject _projectile;
     [SerializeField] private Transform _transform;
@@ -36,7 +36,7 @@ public class EnemyController : MonoBehaviour
         GamePlayManager.Instance.RemoveEnemyFromList(gameObject);
     }
     
-    public async void OnDeath()
+    public async override Task OnDeath()
     {
         //exclude player's layer from collision
         _collider2D.excludeLayers = LayerMaskHelper.OnlyIncluding(LayerMask.NameToLayer("Player"));

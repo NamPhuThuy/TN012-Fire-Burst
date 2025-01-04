@@ -3,11 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using NamPhuThuy;
 using UnityEngine;
+using UnityEngine.Serialization;
 using ToggleFlow = Unity.VisualScripting.ToggleFlow;
 
 public class DataManager : Singleton<DataManager>, IMessageHandle
 {
-    public GameData gameData;
+    public PlayerData playerData;
+    public LevelDesignData levelDesignData;
 
     private string _saveDataPath;
 
@@ -42,7 +44,7 @@ public class DataManager : Singleton<DataManager>, IMessageHandle
         switch (message.type)
         {
             case NamMessageType.OnEnemyDie:
-                gameData.score++;
+                playerData.score++;
                 MessageManager.Instance.SendMessage(new Message(NamMessageType.OnDataChanged));
                 break;
         }
