@@ -40,7 +40,7 @@ public class CharacterController : MonoBehaviour
         {
             // AudioManager.Instance.Play(_collideBulletAudio);
             
-            MessageManager.Instance.SendMessage(new Message(NamMessageType.OnGameOver));
+            MessageManager.Instance.SendMessage(new Message(NamMessageType.OnGameLose));
             Destroy(gameObject);
         }
         

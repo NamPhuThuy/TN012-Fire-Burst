@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2636446736348445120}
   - component: {fileID: 696296375319568275}
   m_Layer: 7
-  m_Name: Enemy
+  m_Name: Broker
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

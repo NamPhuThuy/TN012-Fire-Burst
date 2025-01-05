@@ -12,3 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 425892f62e4ac9b4099e6f388b102e9c, type: 3}
   m_Name: LevelDesignData
   m_EditorClassIdentifier: 
+  _waveList:
+  - waveId: 0
+    waveDelay: 1
+    waveDuration: 0
+    spawnInterval: 0
+    enemyList:
+    - {fileID: 1721023709164987118, guid: 1667a9393e221454fafd4183de4ad241, type: 3}
+    enemyCountList: 03000000
+  - waveId: 0
+    waveDelay: 1.5
+    waveDuration: 0
+    spawnInterval: 0
+    enemyList:
+    - {fileID: 1721023709164987118, guid: 1667a9393e221454fafd4183de4ad241, type: 3}
+    - {fileID: 1721023709164987118, guid: 60423a412a16b09468a0bb3ce164f220, type: 3}
+    enemyCountList: 0300000002000000

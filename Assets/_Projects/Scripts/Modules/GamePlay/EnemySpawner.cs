@@ -1,37 +1,76 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private GameObject _enemyPrefab;
-    private float spawnRadius = 7.5f;
-    private float minDistance = 4.5f;
-    private float maxDistance = 7.5f;
+    [SerializeField] private int _spawnEnemyId;
 
     private float spawnInterval => 1f;
-    void Start()
+
+    public async Task SpawnWave(int waveIndex)
     {
-        StartCoroutine(SpawnEnemies());
+        //Validate wave index
+        if (waveIndex < 0 || waveIndex >= DataManager.Instance.levelDesignData._waveList.Count)
+        {
+            Debug.LogError("Invalid wave index");
+            return;
+        }
+
+        LevelDesign waveData = DataManager.Instance.levelDesignData._waveList[waveIndex];
+        Dictionary<GameObject, int> enemySpawnCount = new Dictionary<GameObject, int>();
+
+        for (int i = 0; i < waveData.enemyList.Count; i++)
+        {
+            enemySpawnCount[waveData.enemyList[i]] = 0;
+        }
+
+        await Task.Delay((int)DataManager.Instance.levelDesignData._waveList[waveIndex].waveDelay * 1000);
+        await SpawnEnemies(waveData, enemySpawnCount);
     }
 
-    IEnumerator SpawnEnemies()
+    private Vector3 GetRandomPositionWithinScreen()
     {
-        while (true)
+        float x = Random.Range(0.1f, 0.9f);
+        float y = Random.Range(0.1f, 0.9f);
+        Vector3 randomViewportPoint = new Vector3(x, y, GamePlayManager.Instance.mainCamera.nearClipPlane);
+        return GamePlayManager.Instance.mainCamera.ViewportToWorldPoint(randomViewportPoint);
+    }
+    
+    private async Task SpawnEnemies(LevelDesign waveData, Dictionary<GameObject, int> enemySpawnCount)
+    {
+        int totalEnemies = 0;
+        foreach (int count in waveData.enemyCountList)
         {
-            yield return new WaitForSeconds(spawnInterval);
+            totalEnemies += count;
+        }
 
+        while (totalEnemies > 0)
+        {
+            await Task.Delay((int)spawnInterval * 1000);
 
-            // Get the player's position
-            Vector3 playerPosition = GamePlayManager.Instance.player.transform.position;
+            // Generate a random point around the player within the screen
+            Vector3 spawnPosition = GetRandomPositionWithinScreen();
+            
+            
+            // Select a random enemy type to spawn
+            int randomIndex = Random.Range(0, waveData.enemyList.Count);
+            GameObject enemyToSpawn = waveData.enemyList[randomIndex];
 
-            // Generate a random point around the player within the spawn radius
-            Vector3 spawnPosition = playerPosition + Random.insideUnitSphere * maxDistance;
+            // Check if the selected enemy type has reached its spawn limit
+            if (enemySpawnCount[enemyToSpawn] < waveData.enemyCountList[randomIndex])
+            {
+                // Instantiate the enemy at the spawn position
+                GameObject newEnemy = Instantiate(enemyToSpawn, new Vector3(spawnPosition.x, spawnPosition.y, 1f), Quaternion.identity);
+                newEnemy.transform.parent = transform;
 
-            // Instantiate the enemy at the spawn position
-            GameObject newEnemy = Instantiate(_enemyPrefab, new Vector3(spawnPosition.x, spawnPosition.y, 1f), Quaternion.identity);
-
-            newEnemy.transform.parent = transform;
+                // Update the spawn count for the selected enemy type
+                enemySpawnCount[enemyToSpawn]++;
+                totalEnemies--;
+            }
         }
     }
 }

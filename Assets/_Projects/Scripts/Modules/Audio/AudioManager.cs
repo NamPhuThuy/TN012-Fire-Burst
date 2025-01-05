@@ -59,7 +59,7 @@ public class AudioManager : Singleton<AudioManager>, IMessageHandle
         _musicSource.volume = MusicVolume;
         InitializeAudioSourcePool();
         
-        MessageManager.Instance.AddSubcriber(NamMessageType.OnGameOver, this);
+        MessageManager.Instance.AddSubcriber(NamMessageType.OnGameLose, this);
         MessageManager.Instance.AddSubcriber(NamMessageType.OnGameStart, this);
         MessageManager.Instance.AddSubcriber(NamMessageType.OnCollectCoin, this);
         MessageManager.Instance.AddSubcriber(NamMessageType.OnEnemyDie, this);
@@ -69,7 +69,7 @@ public class AudioManager : Singleton<AudioManager>, IMessageHandle
 
     private void OnDisable()
     {
-        MessageManager.Instance.RemoveSubcriber(NamMessageType.OnGameOver, this);
+        MessageManager.Instance.RemoveSubcriber(NamMessageType.OnGameLose, this);
         MessageManager.Instance.RemoveSubcriber(NamMessageType.OnGameStart, this);
         MessageManager.Instance.RemoveSubcriber(NamMessageType.OnCollectCoin, this);
         MessageManager.Instance.RemoveSubcriber(NamMessageType.OnEnemyDie, this);
@@ -88,11 +88,14 @@ public class AudioManager : Singleton<AudioManager>, IMessageHandle
         }
     }
 
-    public void PlaySfx(AudioClip clip)
+    public void PlaySfx(AudioClip clip, float volume = 1f, float pitch = 1f)
     {
         AudioSource source = GetAvailableAudioSource();
+        source.volume = volume;
+        source.pitch = pitch;
         source.PlayOneShot(clip);
     }
+   
 
     public void PlayMusic(AudioClip clip, bool isLoop = true)
     {
@@ -150,7 +153,7 @@ public class AudioManager : Singleton<AudioManager>, IMessageHandle
 
     public void Handle(Message message)
     {
-        Debug.Log($"AudioManager: Handle message {message.type.ToString()}");
+        // Debug.Log($"AudioManager: Handle message {message.type.ToString()}");
         switch (message.type)
         {
             //MUSIC
@@ -159,7 +162,7 @@ public class AudioManager : Singleton<AudioManager>, IMessageHandle
                 break;
             
             //SFX
-            case NamMessageType.OnGameOver:
+            case NamMessageType.OnGameLose:
                 PlaySfx(_sfxGameOver);
                 break;
             case NamMessageType.OnCollectCoin:
@@ -169,7 +172,7 @@ public class AudioManager : Singleton<AudioManager>, IMessageHandle
                 PlaySfx(_sfxHitEnemy);
                 break;
             case NamMessageType.OnEnemyDie:
-                PlaySfx(_sfxEnemyDie);
+                PlaySfx(_sfxEnemyDie, 0.7f);
                 break;
         }
     }

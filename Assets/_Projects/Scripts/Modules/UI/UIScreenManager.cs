@@ -12,13 +12,15 @@ public class UIScreenManager : Singleton<UIScreenManager>, IMessageHandle
     private void OnEnable()
     {
         MessageManager.Instance.AddSubcriber(NamMessageType.OnDataChanged, this);
-        MessageManager.Instance.AddSubcriber(NamMessageType.OnGameOver, this);
+        MessageManager.Instance.AddSubcriber(NamMessageType.OnGameLose, this);
+        MessageManager.Instance.AddSubcriber(NamMessageType.OnGameWin, this);
     }
 
     private void OnDisable()
     {
         MessageManager.Instance.RemoveSubcriber(NamMessageType.OnDataChanged, this);
-        MessageManager.Instance.RemoveSubcriber(NamMessageType.OnGameOver, this);
+        MessageManager.Instance.RemoveSubcriber(NamMessageType.OnGameLose, this);
+        MessageManager.Instance.RemoveSubcriber(NamMessageType.OnGameWin, this);
     }
 
     
@@ -29,13 +31,17 @@ public class UIScreenManager : Singleton<UIScreenManager>, IMessageHandle
 
     public void Handle(Message message)
     {
+        Debug.Log($"UIManager: Handle message {message.type.ToString()}");
         switch (message.type)
         {
             case NamMessageType.OnDataChanged:
                 UIScreenHUD.UpdateUI();
                 break;
-            case NamMessageType.OnGameOver:
+            case NamMessageType.OnGameLose:
                 UIScreenGameOver.Show(false);
+                break;
+            case NamMessageType.OnGameWin:
+                UIScreenGameOver.Show(true);
                 break;
         }
     }

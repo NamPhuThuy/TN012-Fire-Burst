@@ -12,12 +12,14 @@ namespace NamPhuThuy
         /// <summary>
         /// When the game is over
         /// </summary>
-        OnGameOver,
+        OnGameLose,
+        OnGameWin,
         OnButtonClick,
         OnHitEnemy,
         OnEnemyDie,
         OnCollectCoin,
-        OnDataChanged
+        OnDataChanged,
+        
     }
     public class Message
     {
