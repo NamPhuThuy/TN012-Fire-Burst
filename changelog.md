@@ -1,13 +1,4 @@
 # Changelog
 
-## v1.0
-
-### Added
-
-### Modified
-
-### Deleted
-
-### Fixed
-
-### Known Issues
+[] Thêm 1 số loại enemy khác 
+[] Vẽ animations 

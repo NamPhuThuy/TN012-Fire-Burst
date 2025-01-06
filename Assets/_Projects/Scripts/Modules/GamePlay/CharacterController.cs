@@ -31,10 +31,6 @@ public class CharacterController : MonoBehaviour
         if (other.transform.CompareTag("Enemy"))
         {
             MessageManager.Instance.SendMessage(new Message(NamMessageType.OnHitEnemy));
-            
-            //Trigger enemy's die-function
-            other.GetComponent<EnemyBase>().OnDeath();
-            
         }
         else if (other.transform.CompareTag("Projectile"))
         {

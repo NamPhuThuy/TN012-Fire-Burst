@@ -8,21 +8,62 @@ using Random = UnityEngine.Random;
 
 public class BrokerController : EnemyBase
 {
+    [Header("Some Components")]
     [SerializeField] private GameObject _projectile;
     [SerializeField] private Transform _transform;
     [SerializeField] private Collider2D _collider2D;
+    [SerializeField] private Animator _animator;
+
+    [Header("Animations List")] 
+    [SerializeField] private AnimationClip _idle;
+    [SerializeField] private AnimationClip _discarding;
+    [SerializeField] private AnimationClip _explosion;
 
     [Header("Stats")] 
     [SerializeField] private float _speed = 2f;
     [SerializeField] private int _projectileNums = 12;
     [SerializeField] private float _spreadAngle;
     [SerializeField] private float _projectileSpeed = 4.8f;
+    
+    [Header("Uncategorized")]
+    [SerializeField] private EnemyState _currentState;
 
     private void Start()
     {
         _transform = GetComponent<Transform>();
         _collider2D = GetComponent<Collider2D>();
+        _animator = GetComponent<Animator>();
+        
         _spreadAngle = 360f / _projectileNums;
+        _currentState = EnemyState.Idle;
+    }
+
+    private void Update()
+    {
+        switch (_currentState)
+        {
+            case EnemyState.Idle:
+                // Handle idle state
+                break;
+            case EnemyState.Discarding:
+                // Handle moving state
+                break;
+            case EnemyState.Dying:
+                // Handle attacking state
+                break;
+            case EnemyState.Die:
+                // Handle dying state
+                break;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            OnDeath();
+            _collider2D.excludeLayers = LayerMaskHelper.OnlyIncluding(LayerMask.NameToLayer("Player"));
+        }
     }
 
     private void OnEnable()
@@ -39,7 +80,6 @@ public class BrokerController : EnemyBase
     public async override Task OnDeath()
     {
         //exclude player's layer from collision
-        _collider2D.excludeLayers = LayerMaskHelper.OnlyIncluding(LayerMask.NameToLayer("Player"));
         await DraggedAway();
         await FireProjectiles();
         await Die();
@@ -47,6 +87,8 @@ public class BrokerController : EnemyBase
     
     private async Task DraggedAway()
     {
+        _animator.Play(_discarding.name);
+        
         float minDistance = 3.5f;
         float maxDistance = 6.5f;
         float moveDuration = 1f; // Time in seconds for the movement
@@ -58,7 +100,14 @@ public class BrokerController : EnemyBase
         Vector2 targetPosition = (Vector2)_transform.position + randomDirection * randomDistance;
     
         float elapsedTime = 0f;
-    
+        while (elapsedTime < moveDuration - _explosion.length)
+        {
+            elapsedTime += Time.deltaTime;
+            float percentageComplete = Mathf.Clamp01(elapsedTime / moveDuration);
+            _transform.position = Vector2.Lerp(startPosition, targetPosition, percentageComplete);
+            await Task.Yield();
+        }
+        _animator.Play(_explosion.name);
         while (elapsedTime < moveDuration)
         {
             elapsedTime += Time.deltaTime;
@@ -92,9 +141,8 @@ public class BrokerController : EnemyBase
     private async Task Die()
     {
         MessageManager.Instance.SendMessage(new Message(NamMessageType.OnEnemyDie));
-        //cập nhật data
-        //cập nhật lại UI 
-        //phát đoạn nhạc
         Destroy(gameObject);
     }
 }
+
+

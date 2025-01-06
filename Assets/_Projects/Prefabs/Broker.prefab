@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 571439716938379748}
   - component: {fileID: 2636446736348445120}
   - component: {fileID: 696296375319568275}
+  - component: {fileID: -2638873007865348572}
   m_Layer: 7
   m_Name: Broker
   m_TagString: Enemy
@@ -100,11 +101,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _projectile: {fileID: 2502115708849141268, guid: faa8f6a801c5adc41812176cf756b8c8, type: 3}
   _transform: {fileID: 0}
-  _rigidbody2D: {fileID: 0}
+  _collider2D: {fileID: 0}
+  _animator: {fileID: 0}
+  _idle: {fileID: -3100369314251171874, guid: 5d6e084dddb96714fa7c29ec8a5341bc, type: 3}
+  _discarding: {fileID: -3622092571948813675, guid: 5d6e084dddb96714fa7c29ec8a5341bc, type: 3}
+  _explosion: {fileID: -6126408084118648288, guid: 5d6e084dddb96714fa7c29ec8a5341bc, type: 3}
   _speed: 2
   _projectileNums: 12
   _spreadAngle: 0
   _projectileSpeed: 4.8
+  _currentState: 0
 --- !u!61 &696296375319568275
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -134,7 +140,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -150,3 +156,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.44444445, y: 0.44444445}
   m_EdgeRadius: 0
+--- !u!95 &-2638873007865348572
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721023709164987118}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 5458057679697768327, guid: 5d6e084dddb96714fa7c29ec8a5341bc, type: 3}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
