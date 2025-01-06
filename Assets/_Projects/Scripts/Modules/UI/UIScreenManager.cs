@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using NamPhuThuy;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIScreenManager : Singleton<UIScreenManager>, IMessageHandle
 {
@@ -11,6 +12,7 @@ public class UIScreenManager : Singleton<UIScreenManager>, IMessageHandle
     
     private void OnEnable()
     {
+        SceneManager.sceneLoaded += OnSceneLoaded;
         MessageManager.Instance.AddSubcriber(NamMessageType.OnDataChanged, this);
         MessageManager.Instance.AddSubcriber(NamMessageType.OnGameLose, this);
         MessageManager.Instance.AddSubcriber(NamMessageType.OnGameWin, this);
@@ -18,15 +20,26 @@ public class UIScreenManager : Singleton<UIScreenManager>, IMessageHandle
 
     private void OnDisable()
     {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
         MessageManager.Instance.RemoveSubcriber(NamMessageType.OnDataChanged, this);
         MessageManager.Instance.RemoveSubcriber(NamMessageType.OnGameLose, this);
         MessageManager.Instance.RemoveSubcriber(NamMessageType.OnGameWin, this);
     }
-
     
-    void Start()
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        UIScreenHUD.Show();
+        string sceneName = scene.name;  // Get the name of the loaded scene
+
+        // Choose and play the appropriate music based on sceneName
+        switch (sceneName)
+        {
+            case "MainMenu":
+               
+                break;
+            case "GamePlay":
+                UIScreenHUD.Show();
+                break;
+        }
     }
 
     public void Handle(Message message)

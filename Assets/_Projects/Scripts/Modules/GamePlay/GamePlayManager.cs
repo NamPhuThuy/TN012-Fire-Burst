@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using NamPhuThuy;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 public class GamePlayManager : Singleton<GamePlayManager>
@@ -14,6 +15,7 @@ public class GamePlayManager : Singleton<GamePlayManager>
     [Header("Level Design")]
     [SerializeField] private List<GameObject> _enemyList;
     [SerializeField] private EnemySpawner _enemySpawner;
+    public GameObject gameLoop;
 
     private void Start()
     {
@@ -21,8 +23,16 @@ public class GamePlayManager : Singleton<GamePlayManager>
         mainCamera = Camera.main;
     }
 
+    private void OnDestroy()
+    {
+        player = null;
+        mainCamera = null;
+    }
+
     private void OnEnable()
     {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        
         AudioManager.Instance.PlayMusic(AudioManager.Instance._musicGamePlay, true);
         GameLoop();
     }
@@ -30,13 +40,30 @@ public class GamePlayManager : Singleton<GamePlayManager>
     private void OnDisable()
     {
         //Stop all music 
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+    
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        string sceneName = scene.name;  // Get the name of the loaded scene
+
+        // Choose and play the appropriate music based on sceneName
+        switch (sceneName)
+        {
+            case "MainMenu":
+               
+                break;
+            case "GamePlay":
+                gameLoop.SetActive(true);
+                break;
+        }
     }
 
     private async void GameLoop()
     {
         while (true)
         {
-            if (DataManager.Instance.playerData.currentWave == DataManager.Instance.levelDesignData.maxWave)
+            if (DataManager.Instance.playerData.currentWave == DataManager.Instance.levelDesignData.maxWave && _enemyList.Count == 0)
             {
                 //game over
                 MessageManager.Instance.SendMessage(new Message(NamMessageType.OnGameWin));
