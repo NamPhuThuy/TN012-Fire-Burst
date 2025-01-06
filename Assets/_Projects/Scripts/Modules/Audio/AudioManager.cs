@@ -172,7 +172,7 @@ public class AudioManager : Singleton<AudioManager>, IMessageHandle
                 PlaySfx(_sfxHitEnemy);
                 break;
             case NamMessageType.OnEnemyDie:
-                PlaySfx(_sfxEnemyDie, 0.7f);
+                PlaySfx(_sfxEnemyDie, 0.4f);
                 break;
         }
     }

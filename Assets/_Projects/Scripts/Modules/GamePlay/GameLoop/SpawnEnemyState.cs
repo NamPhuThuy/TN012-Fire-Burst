@@ -2,18 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using NamPhuThuy;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class SpawnEnemyState : ComponentState
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private DelaySpawnState _delaySpawnState;
+    private async void OnEnable()
     {
+        await GamePlayManager.Instance._enemySpawner.SpawnCurrentWave();
         
-    }
+        DataManager.Instance.playerData.currentWave++;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (DataManager.Instance.playerData.currentWave < DataManager.Instance.levelDesignData.maxWave)
+        {
+            ChangeState(_delaySpawnState.gameObject);
+        }
+        else
+        {
+            ChangeState(Next());
+        }
     }
 }

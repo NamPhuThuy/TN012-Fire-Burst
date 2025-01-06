@@ -15,16 +15,23 @@ MonoBehaviour:
   _waveList:
   - waveId: 0
     waveDelay: 1
-    waveDuration: 0
-    spawnInterval: 0
+    waveDuration: 40
+    spawnInterval: 1.5
     enemyList:
     - {fileID: 1721023709164987118, guid: 1667a9393e221454fafd4183de4ad241, type: 3}
     enemyCountList: 03000000
-  - waveId: 0
+  - waveId: 1
     waveDelay: 1.5
-    waveDuration: 0
-    spawnInterval: 0
+    waveDuration: 40
+    spawnInterval: 1.2
     enemyList:
     - {fileID: 1721023709164987118, guid: 1667a9393e221454fafd4183de4ad241, type: 3}
     - {fileID: 1721023709164987118, guid: 60423a412a16b09468a0bb3ce164f220, type: 3}
     enemyCountList: 0300000002000000
+  - waveId: 2
+    waveDelay: 1.5
+    waveDuration: 40
+    spawnInterval: 1
+    enemyList:
+    - {fileID: 1721023709164987118, guid: 60423a412a16b09468a0bb3ce164f220, type: 3}
+    enemyCountList: 06000000

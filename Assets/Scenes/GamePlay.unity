@@ -213,6 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b01ca048006074548b74462b22ac687d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _delaySpawnState: {fileID: 1969021966}
 --- !u!1 &277547548
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,7 +439,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &465357345
 Transform:
   m_ObjectHideFlags: 0
@@ -1722,7 +1723,7 @@ GameObject:
   - component: {fileID: 1969021965}
   - component: {fileID: 1969021966}
   m_Layer: 0
-  m_Name: WaveDelayState
+  m_Name: DelaySpawnState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
