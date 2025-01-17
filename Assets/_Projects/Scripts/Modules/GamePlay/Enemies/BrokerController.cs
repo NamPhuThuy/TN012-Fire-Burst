@@ -38,25 +38,6 @@ public class BrokerController : EnemyBase
         _currentState = EnemyState.Idle;
     }
 
-    private void Update()
-    {
-        switch (_currentState)
-        {
-            case EnemyState.Idle:
-                // Handle idle state
-                break;
-            case EnemyState.Discarding:
-                // Handle moving state
-                break;
-            case EnemyState.Dying:
-                // Handle attacking state
-                break;
-            case EnemyState.Die:
-                // Handle dying state
-                break;
-        }
-    }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))

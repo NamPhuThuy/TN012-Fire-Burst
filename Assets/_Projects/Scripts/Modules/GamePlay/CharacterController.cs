@@ -22,12 +22,11 @@ public class CharacterController : MonoBehaviour
     {
         Vector2 newPosi = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
         transform.position = new Vector3(newPosi.x, newPosi.y, -2);
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log($"TNam - collide with {other.transform.name}");
-        
         if (other.transform.CompareTag("Enemy"))
         {
             MessageManager.Instance.SendMessage(new Message(NamMessageType.OnHitEnemy));

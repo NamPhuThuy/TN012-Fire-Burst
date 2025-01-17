@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &2226036541060812336
+--- !u!1001 &1956156050469313457
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -8,13 +8,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 104487213029228987, guid: 60423a412a16b09468a0bb3ce164f220, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 5458057679697768327, guid: 5d6e084dddb96714fa7c29ec8a5341bc, type: 3}
     - target: {fileID: 1721023709164987118, guid: 60423a412a16b09468a0bb3ce164f220, type: 3}
       propertyPath: m_Name
-      value: Broker 1
+      value: Exploser
       objectReference: {fileID: 0}
     - target: {fileID: 5966576393082265869, guid: 60423a412a16b09468a0bb3ce164f220, type: 3}
       propertyPath: m_LocalPosition.x
@@ -62,39 +58,22 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1721023709164987118, guid: 60423a412a16b09468a0bb3ce164f220, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7336251635735584849}
+      addedObject: {fileID: 7284917455161708430}
   m_SourcePrefab: {fileID: 100100000, guid: 60423a412a16b09468a0bb3ce164f220, type: 3}
---- !u!1 &650266025781488862 stripped
+--- !u!1 &920955756830374239 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1721023709164987118, guid: 60423a412a16b09468a0bb3ce164f220, type: 3}
-  m_PrefabInstance: {fileID: 2226036541060812336}
+  m_PrefabInstance: {fileID: 1956156050469313457}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7336251635735584849
+--- !u!114 &7284917455161708430
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 650266025781488862}
+  m_GameObject: {fileID: 920955756830374239}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d64f38e3f64f9aa45a4d0987aa8665a2, type: 3}
+  m_Script: {fileID: 11500000, guid: 049e715e58d692c4dabb17fa8c4f1bfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _projectile: {fileID: 2502115708849141268, guid: faa8f6a801c5adc41812176cf756b8c8, type: 3}
-  _transform: {fileID: 0}
-  _collider2D: {fileID: 0}
-  _animator: {fileID: 2276374868001132427}
-  _idle: {fileID: -3100369314251171874, guid: 5d6e084dddb96714fa7c29ec8a5341bc, type: 3}
-  _discarding: {fileID: -3622092571948813675, guid: 5d6e084dddb96714fa7c29ec8a5341bc, type: 3}
-  _explosion: {fileID: -6126408084118648288, guid: 5d6e084dddb96714fa7c29ec8a5341bc, type: 3}
-  _speed: 2
-  _projectileNums: 12
-  _spreadAngle: 0
-  _projectileSpeed: 4.8
-  _currentState: 0
---- !u!95 &2276374868001132427 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 104487213029228987, guid: 60423a412a16b09468a0bb3ce164f220, type: 3}
-  m_PrefabInstance: {fileID: 2226036541060812336}
-  m_PrefabAsset: {fileID: 0}

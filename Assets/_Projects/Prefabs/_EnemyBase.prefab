@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5966576393082265869}
   - component: {fileID: 571439716938379748}
-  - component: {fileID: 2636446736348445120}
   - component: {fileID: 696296375319568275}
+  - component: {fileID: 104487213029228987}
   m_Layer: 7
-  m_Name: Broker_B
+  m_Name: _EnemyBase
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7e2c65b11bcf8814aa63a3b60ce71c63, type: 3}
-  m_Color: {r: 0.9811321, g: 0.36561054, b: 0.36561054, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -86,25 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2636446736348445120
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1721023709164987118}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d64f38e3f64f9aa45a4d0987aa8665a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _projectile: {fileID: 2502115708849141268, guid: faa8f6a801c5adc41812176cf756b8c8, type: 3}
-  _transform: {fileID: 0}
-  _collider2D: {fileID: 0}
-  _speed: 2
-  _projectileNums: 12
-  _spreadAngle: 0
-  _projectileSpeed: 4.8
 --- !u!61 &696296375319568275
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -141,7 +122,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.44444445, y: 0.44444445}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -150,3 +131,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.44444445, y: 0.44444445}
   m_EdgeRadius: 0
+--- !u!95 &104487213029228987
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721023709164987118}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

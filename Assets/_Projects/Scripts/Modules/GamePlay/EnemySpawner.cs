@@ -63,7 +63,6 @@ public class EnemySpawner : MonoBehaviour
 
         while (totalEnemies > 0)
         {
-            Debug.LogError($"Delay in Spawn");
             await Task.Delay((int)SpawnIntervalTime * 1000);
             Vector3 spawnPosition = GetRandomPositionWithinScreen();
             
